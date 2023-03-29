@@ -5,7 +5,7 @@ namespace MoviesRate_API.Models
     public class Rate
     {
         [Key]
-        public int MovieId { get; set; }
+        public string MovieId { get; set; }
         [Required]
         [Display(Name = "Movie Title")]
         public string MovieTitle { get; set; }
@@ -15,7 +15,8 @@ namespace MoviesRate_API.Models
         public int Score { get; set; }
         [Required]
         [StringLength(250)]
-        public string Comments { get; set; }
+        public string Comment { get; set; }
+
 
         public Rate() { }
     }

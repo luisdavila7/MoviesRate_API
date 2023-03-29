@@ -11,8 +11,8 @@ using MoviesRate_API.Data;
 namespace MoviesRate_API.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230327005804_movies")]
-    partial class movies
+    [Migration("20230329014526_MovieAPI")]
+    partial class MovieAPI
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,11 +26,8 @@ namespace MoviesRate_API.Migrations
 
             modelBuilder.Entity("MoviesRate_API.Models.Movie", b =>
                 {
-                    b.Property<int>("MovieId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MovieId"));
+                    b.Property<string>("MovieId")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -45,6 +42,11 @@ namespace MoviesRate_API.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Poster")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
                     b.Property<string>("Year")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -56,13 +58,10 @@ namespace MoviesRate_API.Migrations
 
             modelBuilder.Entity("MoviesRate_API.Models.Rate", b =>
                 {
-                    b.Property<int>("MovieId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                    b.Property<string>("MovieId")
+                        .HasColumnType("nvarchar(450)");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MovieId"));
-
-                    b.Property<string>("Comments")
+                    b.Property<string>("Comment")
                         .IsRequired()
                         .HasMaxLength(250)
                         .HasColumnType("nvarchar(250)");
